@@ -1,0 +1,2 @@
+# minitalk
+A communication program
