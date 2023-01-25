@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/22 17:35:07 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/25 14:35:05 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(void)
 
 	pid = getpid();
 	printf("Server Process ID : %d\n", pid);
-	
+	while (1)
+	{}
 	return (0);
 }
+

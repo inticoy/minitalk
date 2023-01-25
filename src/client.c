@@ -3,11 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:31 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/22 20:29:39 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/25 16:24:07 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void);
+#include "client.h"
+#include <signal.h>
+#include <stdio.h>
+
+int	main(int argc, char **argv)
+{
+	printf("%s", argv[2]);
+	return (0);
+}
