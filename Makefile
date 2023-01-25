@@ -6,7 +6,7 @@
 #    By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/25 16:44:08 by gyoon             #+#    #+#              #
-#    Updated: 2023/01/25 22:28:39 by gyoon            ###   ########.fr        #
+#    Updated: 2023/01/25 22:33:02 by gyoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,10 @@ CLIENT = client
 
 all : $(NAME)
 
-$(SERVER) : $(S_OBJS)
+$(SERVER) : $(S_OBJS) $(LIBFT)
 	$(CC) $(S_OBJS) -o $@ -I $(INCLUDES) -l ft -L ./libft
 
-$(CLIENT) : $(C_OBJS)
+$(CLIENT) : $(C_OBJS) $(LIBFT)
 	$(CC) $(C_OBJS) -o $@ -I $(INCLUDES) -l ft -L ./libft
 
 $(LIBFT) :
