@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.h                                           :+:      :+:    :+:   */
+/*   raise_exception.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/22 17:30:28 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/26 21:03:46 by gyoon            ###   ########.fr       */
+/*   Created: 2023/01/26 20:58:38 by gyoon             #+#    #+#             */
+/*   Updated: 2023/01/26 21:00:35 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLIENT_H
-# define CLIENT_H
+#include <stdlib.h>
+#include "libft.h"
 
-# include "libft.h"
-
-t_bool	is_valid_argc(int argc);
-void	raise_exception(char *msg);
-
-#endif
+void	raise_exception(char *msg)
+{
+	ft_printf("%s", msg);
+	exit(0);
+}

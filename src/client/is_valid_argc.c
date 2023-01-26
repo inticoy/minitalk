@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_argc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 22:49:41 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/25 22:52:31 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/26 20:57:26 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,3 @@ t_bool	is_valid_argc(int argc)
 	else
 		return (ft_false);
 }
-
