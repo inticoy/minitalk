@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/26 20:56:45 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/26 21:12:13 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	main(void)
 	ft_printf("%x", 'A');
 	sigact.sa_handler = handler;
 	sigemptyset(&sigact.sa_mask);
-	sigact.sa_flags = SA_RESTART;
+	sigact.sa_mask |= SIGUSR1 | SIGUSR2;
+	sigact.sa_flags |= SA_RESTART | SA_SIGINFO;
 	sigaction(SIGUSR1, &sigact, FT_NULL);
 	sigaction(SIGUSR2, &sigact, FT_NULL);
 	while (1)
