@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   is_valid_argc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/22 16:24:34 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/25 14:35:05 by gyoon            ###   ########.fr       */
+/*   Created: 2023/01/25 22:49:41 by gyoon             #+#    #+#             */
+/*   Updated: 2023/01/25 22:52:31 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "server.h"
+#include "libft.h"
 
-int	main(void)
+t_bool	is_valid_argc(int argc)
 {
-	pid_t	pid;
-
-	pid = getpid();
-	printf("Server Process ID : %d\n", pid);
-	while (1)
-	{}
-	return (0);
+	if (argc == 3)
+		return (ft_true);
+	else
+		return (ft_false);
 }
 

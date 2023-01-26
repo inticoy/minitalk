@@ -1,22 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/22 16:24:31 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/25 22:23:52 by gyoon            ###   ########.fr       */
+/*   Created: 2023/01/22 16:24:34 by gyoon             #+#    #+#             */
+/*   Updated: 2023/01/26 17:22:23 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "client.h"
+#include "server.h"
 #include <signal.h>
-#include <stdio.h>
 
-int	main(int argc, char **argv)
+typedef struct sigaction	t_sigaction;
+
+void	handler(int sig)
 {
-	printf("%d\n", argc);
-	printf("%s\n", argv[2]);
+	static char	ch;
+	static char	bit;
+
+	if (sig == SIGUSR1)
+		ch++;
+	ch << 1;
+	bit++;
+	if (bit == 8)
+	{
+		write(1, &ch, 1);
+		ch = 0;
+		bit = 0;
+	}
+
+}
+
+int	main(void)
+{
+	t_sigaction	sigact;
+	pid_t		pid;
+
+	pid = getpid();
+	printf("Server Process ID : %d\n", pid);
+
+	
+	while (1)
+	{}
 	return (0);
 }
+

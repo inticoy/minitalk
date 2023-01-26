@@ -6,7 +6,7 @@
 #    By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/25 16:44:08 by gyoon             #+#    #+#              #
-#    Updated: 2023/01/25 22:33:02 by gyoon            ###   ########.fr        #
+#    Updated: 2023/01/25 22:51:29 by gyoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ RM = rm -rf
 ARFLAGS = -rcs
 CFLAGS = -Wall -Wextra -Werror
 
-S_SRCS = $(addprefix ./src, /server.c)
-C_SRCS = $(addprefix ./src, /client.c)
+S_SRCS = $(addprefix ./src/server, /server.c)
+C_SRCS = $(addprefix ./src/client, /client.c /is_valid_argc.c)
 		
 S_OBJS = $(S_SRCS:.c=.o)
 C_OBJS = $(C_SRCS:.c=.o)
