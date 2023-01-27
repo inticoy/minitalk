@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/26 21:12:13 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/27 15:01:17 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ typedef struct sigaction	t_sigaction;
 void	handler(int sig)
 {
 	static char	ch;
+	char		test;
 	static char	bit;
+	static char count;
 
-	ch <<= 1;
+	test = 0;
 	if (sig == SIGUSR1)
-		ch |= 0x01;
+		test = 0x01 << bit;
+	ch |= test;
 	bit++;
 	if (bit == 8)
 	{
@@ -31,6 +34,8 @@ void	handler(int sig)
 		ch = 0;
 		bit = 0;
 	}
+	count++;
+	//ft_printf("%d\n", count);
 }
 
 int	main(void)
