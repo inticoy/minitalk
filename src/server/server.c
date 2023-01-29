@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/29 21:44:12 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/29 22:17:31 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	handler(int sig, siginfo_t *info, void *v)
 		ch |= 0x01 << bit;
 	else
 		ch |= 0x00;
-	kill(info->si_pid, sig);
 	if (++bit == 8)
 	{
 		ft_putchar_fd(ch, 1);
 		ch = 0;
 		bit = 0;
 	}
+	kill(info->si_pid, sig);
 }
 
 int	main(void)
