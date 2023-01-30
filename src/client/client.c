@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:31 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/29 22:49:00 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/30 14:50:53 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,14 @@ volatile sig_atomic_t	ack;
 
 void	handler(int sig, siginfo_t *info, void *v)
 {
-	(void) sig;
 	(void) info;
 	(void) v;
-	if (!ack)
-		ack = 1;
-	/* if (sig == SIGUSR1)
+	if (sig == SIGUSR1)
 		ack = 1;
 	else if (sig == SIGUSR2)
-		ack = 0;
+		ack = -1;
 	else
-		ack = -1; */
+		ack = 0;
 }
 
 int	main(int argc, char **argv)
@@ -55,17 +52,17 @@ int	main(int argc, char **argv)
 		char c = argv[2][i];
 		while (j < 8)
 		{
-			usleep(20);
+			usleep(100);
 			if (c & 0x01)
 			{
 				kill(pid, SIGUSR1);
-				while (ack != 1)
+				while (ack < 1)
 					;
 			}
 			else
 			{
 				kill(pid, SIGUSR2);
-				while (ack != 1)
+				while (ack > -1)
 					;
 			}
 			ack = 0;

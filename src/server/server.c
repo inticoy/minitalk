@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/29 22:17:31 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/30 15:20:09 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	handler(int sig, siginfo_t *info, void *v)
 	(void) v;
 	if (sig == SIGUSR1)
 		ch |= 0x01 << bit;
-	else
-		ch |= 0x00;
 	if (++bit == 8)
 	{
 		ft_putchar_fd(ch, 1);
@@ -33,20 +31,31 @@ void	handler(int sig, siginfo_t *info, void *v)
 	kill(info->si_pid, sig);
 }
 
+t_server_data	*get_server_data(void)
+{
+	static t_server_data	sdata;
+
+	return (&sdata);
+}
+
+void	init_server(void)
+{
+	get_server_data()->act.sa_sigaction = handler;
+	sigemptyset(&get_server_data()->act.sa_mask);
+	sidaddset(&get_server_data()->act.sa_mask, SIGUSR1);
+	sidaddset(&get_server_data()->act.sa_mask, SIGUSR2);
+	get_server_data()->act.sa_flags = SA_RESTART | SA_SIGINFO;
+	get_server_data()->s_pid = getpid();
+
+
+}
+
 int	main(void)
 {
-	struct sigaction	sigact;
-	pid_t				pid;
-
-	pid = getpid();
-	ft_printf("Server Process ID : %d\n", pid);
-	sigact.sa_sigaction = handler;
-	sigemptyset(&sigact.sa_mask);
-	sigaddset(&sigact.sa_mask, SIGUSR1);
-	sigaddset(&sigact.sa_mask, SIGUSR2);
-	sigact.sa_flags = SA_RESTART | SA_SIGINFO;
-	sigaction(SIGUSR1, &sigact, FT_NULL);
-	sigaction(SIGUSR2, &sigact, FT_NULL);
+	init_server();
+	ft_printf("Server Process ID : %d\n", get_server_data()->s_pid);
+	sigaction(SIGUSR1, &get_server_data()->act, FT_NULL);
+	sigaction(SIGUSR2, &get_server_data()->act, FT_NULL);
 	while (1)
 		;
 	return (0);
