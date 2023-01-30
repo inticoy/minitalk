@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 13:36:29 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/25 22:51:54 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/30 15:56:20 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ void		ft_lstdelone(t_list *lst, void (*del) (void *));
 void		ft_lstclear(t_list **lst, void (*del) (void *));
 void		ft_lstiter(t_list *lst, void (*f) (void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f) (void *), void (*del) (void *));
-
 
 int			update_line(t_string *l, t_buffer b);
 int			update_buffer(t_buffer *b);

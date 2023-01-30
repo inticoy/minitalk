@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+         #
+#    By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/25 16:44:08 by gyoon             #+#    #+#              #
-#    Updated: 2023/01/26 21:03:33 by gyoon            ###   ########.fr        #
+#    Updated: 2023/01/30 15:55:29 by gyoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,10 @@ RM = rm -rf
 ARFLAGS = -rcs
 CFLAGS = -Wall -Wextra -Werror
 
-S_SRCS = $(addprefix ./src/server, /server.c)
-#C_SRCS = $(addprefix ./src/client, /client.c /is_valid_argc.c)
-C_SRCS = 	./src/client/client.c \
-			./src/client/is_valid_argc.c \
-			./src/common/raise_exception.c
+S_SRCS = 	./src/server.c \
+			./src/raise_exception.c
+C_SRCS = 	./src/client.c \
+			./src/raise_exception.c
 
 S_OBJS = $(S_SRCS:.c=.o)
 C_OBJS = $(C_SRCS:.c=.o)

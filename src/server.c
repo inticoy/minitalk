@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyoon <gyoon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/29 22:17:31 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/30 15:55:56 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,37 @@ void	handler(int sig, siginfo_t *info, void *v)
 	(void) v;
 	if (sig == SIGUSR1)
 		ch |= 0x01 << bit;
-	else
-		ch |= 0x00;
 	if (++bit == 8)
 	{
 		ft_putchar_fd(ch, 1);
+		if (!ch)
+		{
+			ft_printf("\nMsg received from [%d] successfully.\n", info->si_pid);
+			ft_printf("Server Process ID : %d\n", getpid());
+		}
 		ch = 0;
 		bit = 0;
 	}
 	kill(info->si_pid, sig);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	struct sigaction	sigact;
-	pid_t				pid;
+	t_sigaction	act;
+	pid_t		pid;
 
+	(void) argv;
+	if (argc != 1)
+		raise_exception("execution must be './server'\n");
 	pid = getpid();
 	ft_printf("Server Process ID : %d\n", pid);
-	sigact.sa_sigaction = handler;
-	sigemptyset(&sigact.sa_mask);
-	sigaddset(&sigact.sa_mask, SIGUSR1);
-	sigaddset(&sigact.sa_mask, SIGUSR2);
-	sigact.sa_flags = SA_RESTART | SA_SIGINFO;
-	sigaction(SIGUSR1, &sigact, FT_NULL);
-	sigaction(SIGUSR2, &sigact, FT_NULL);
+	act.sa_sigaction = handler;
+	sigemptyset(&act.sa_mask);
+	sigaddset(&act.sa_mask, SIGUSR1);
+	sigaddset(&act.sa_mask, SIGUSR2);
+	act.sa_flags = SA_RESTART | SA_SIGINFO;
+	sigaction(SIGUSR1, &act, FT_NULL);
+	sigaction(SIGUSR2, &act, FT_NULL);
 	while (1)
 		;
 	return (0);
