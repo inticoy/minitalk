@@ -6,7 +6,7 @@
 /*   By: gyoon <gyoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:31 by gyoon             #+#    #+#             */
-/*   Updated: 2023/01/30 17:27:27 by gyoon            ###   ########.fr       */
+/*   Updated: 2023/01/30 17:35:00 by gyoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void	send_null(pid_t pid)
 	{
 		usleep(50);
 		kill(pid, SIGUSR2);
+		while (g_ack != 1)
+			;
+		g_ack = 0;
 		i++;
 	}
 }
@@ -85,8 +88,6 @@ int	main(int argc, char **argv)
 	sigaction(SIGUSR2, &act, FT_NULL);
 	send_msg(pid, argv[2]);
 	send_null(pid);
-	while (g_ack != 1)
-		;
 	ft_printf("Msg sent to [%d] successfully.", pid);
 	return (0);
 }
